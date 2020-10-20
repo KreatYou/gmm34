@@ -6,11 +6,11 @@ print(num)
 
 W = 480
 H = 360
-Silver = (192, 192, 192)
+SILVER = (192, 192, 192)
 BLACK = (0, 0, 0)
 pygame.init()
 pygame.display.set_caption('Угадай число')
-pygame.mouse.set_visible(False)
+pygame.mouse.set_visible(True)
 screen = pygame.display.set_mode((W, H))
 
 bg = pygame.image.load('Image/room.png')
@@ -23,6 +23,14 @@ owl = pygame.image.load('Image/owl.png')
 owl_rect = owl.get_rect(center=(210, 120))
 dialog = pygame.image.load('Image/dialog.png')
 dialog_rect = dialog.get_rect()
+dialog_cat_pos = (cat_rect.x, cat_rect.y - dialog_rect.h)
+dialog_cat_pos = (owl_rect.x, owl_rect.y - dialog_rect.h)
+dialog_cat_pos = (dog_rect.x, dog_rect.w // 2, dog_rect.y - dialog_rect.h)
+
+font = pygame.font.SysFont('Arial', 28, True, False)
+font2 = pygame.font.SysFont('Arial', 14, False, True)
+font_box = pygame.Surface((W - 30, font.get_height()))
+font_box_rect = font_box.get_rect(center=(W // 2, H -30))
 
 print(bg_rect)
 
@@ -39,4 +47,6 @@ while run:
     screen.blit(cat, cat_rect)
     screen.blit(dog, dog_rect)
     screen.blit(owl, owl_rect)
+    screen.blit(font_box, font_box_rect)
+    font_box.fill(SILVER)
     pygame.display.update()
